@@ -1,4 +1,5 @@
 import { prisma } from "../../shared/PrismaClient";
+import { AppError } from "../../utils/AppError";
 import { IBike } from "./bikes.interface";
 
 const createBike = async (bike: IBike) => {
@@ -9,7 +10,7 @@ const createBike = async (bike: IBike) => {
         },
     });
     if (!isCustomerExist) {
-        throw new Error('Customer does not exist')
+        throw new AppError(404,'Customer does not exist')
     }
     const result = await prisma.bike.create({
         data: bike,

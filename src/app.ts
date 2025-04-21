@@ -2,6 +2,8 @@ import cookieParser from 'cookie-parser';
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import { AllRoutes } from './app/routes';
+import GlobalErrorHandler from './app/middlewares/GlobalErrorHandlers';
+import NotFound from './app/middlewares/NotFound';
 const app: Application = express()
 
 
@@ -19,6 +21,6 @@ app.use('/api', AllRoutes)
 
 
 
-// app.use(GlobalErrorHandler)
-// app.use(NotFound)
+app.use(GlobalErrorHandler)
+app.use(NotFound)
 export default app
