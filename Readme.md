@@ -82,7 +82,7 @@ The system supports full CRUD operations along with special endpoints for assign
 
 ## 🌐 Live API
 
-> Hosted on: [Your Render/Railway link here]
+> Hosted on: [(https://fix-my-ride-pied.vercel.app/)]
 
 ---
 
