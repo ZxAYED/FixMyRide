@@ -197,7 +197,7 @@ const config = {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://postgres:123456@localhost:5432/FixMyRide?schema=public"
+        "value": "postgresql://fixmyride_user:IX7sAmcGxaxdyOXMcPQNYsuRyUkmtmQW@dpg-d0357p1r0fns738qgbhg-a.singapore-postgres.render.com/fixmyride"
       }
     }
   },

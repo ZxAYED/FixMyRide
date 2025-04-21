@@ -8,7 +8,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum brand {
+enum Brand {
   KTM
   HONDA
   SUZUKI
@@ -39,7 +39,7 @@ model customer {
 
 model Bike {
   bikeId         String          @id @default(uuid())
-  brand          brand
+  brand          Brand
   model          String
   year           Int
   customerId     String
