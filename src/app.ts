@@ -1,6 +1,7 @@
 import cookieParser from 'cookie-parser';
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
+import { AllRoutes } from './app/routes';
 const app: Application = express()
 
 
@@ -14,7 +15,7 @@ app.get('/', (req: Request, res: Response) => {
     res.send('Kela Mela shara bela!')
 })
 
-// app.use('/api/v1', allRouter)
+app.use('/api', AllRoutes)
 
 
 

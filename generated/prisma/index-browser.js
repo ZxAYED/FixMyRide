@@ -157,7 +157,7 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-exports.brand = exports.$Enums.brand = {
+exports.Brand = exports.$Enums.Brand = {
   KTM: 'KTM',
   HONDA: 'HONDA',
   SUZUKI: 'SUZUKI',

@@ -41,7 +41,7 @@ model Bike {
   bikeId         String          @id @default(uuid())
   brand          brand
   model          String
-  year           String
+  year           Int
   customerId     String
   customer       customer        @relation(fields: [customerId], references: [customerId])
   serviceRecords ServiceRecord[]

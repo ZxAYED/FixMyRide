@@ -33,7 +33,7 @@ export type ServiceRecord = $Result.DefaultSelection<Prisma.$ServiceRecordPayloa
  * Enums
  */
 export namespace $Enums {
-  export const brand: {
+  export const Brand: {
   KTM: 'KTM',
   HONDA: 'HONDA',
   SUZUKI: 'SUZUKI',
@@ -45,7 +45,7 @@ export namespace $Enums {
   BAJAJ: 'BAJAJ'
 };
 
-export type brand = (typeof brand)[keyof typeof brand]
+export type Brand = (typeof Brand)[keyof typeof Brand]
 
 
 export const status: {
@@ -59,9 +59,9 @@ export type status = (typeof status)[keyof typeof status]
 
 }
 
-export type brand = $Enums.brand
+export type Brand = $Enums.Brand
 
-export const brand: typeof $Enums.brand
+export const Brand: typeof $Enums.Brand
 
 export type status = $Enums.status
 
@@ -2239,23 +2239,33 @@ export namespace Prisma {
 
   export type AggregateBike = {
     _count: BikeCountAggregateOutputType | null
+    _avg: BikeAvgAggregateOutputType | null
+    _sum: BikeSumAggregateOutputType | null
     _min: BikeMinAggregateOutputType | null
     _max: BikeMaxAggregateOutputType | null
   }
 
+  export type BikeAvgAggregateOutputType = {
+    year: number | null
+  }
+
+  export type BikeSumAggregateOutputType = {
+    year: number | null
+  }
+
   export type BikeMinAggregateOutputType = {
     bikeId: string | null
-    brand: $Enums.brand | null
+    brand: $Enums.Brand | null
     model: string | null
-    year: string | null
+    year: number | null
     customerId: string | null
   }
 
   export type BikeMaxAggregateOutputType = {
     bikeId: string | null
-    brand: $Enums.brand | null
+    brand: $Enums.Brand | null
     model: string | null
-    year: string | null
+    year: number | null
     customerId: string | null
   }
 
@@ -2268,6 +2278,14 @@ export namespace Prisma {
     _all: number
   }
 
+
+  export type BikeAvgAggregateInputType = {
+    year?: true
+  }
+
+  export type BikeSumAggregateInputType = {
+    year?: true
+  }
 
   export type BikeMinAggregateInputType = {
     bikeId?: true
@@ -2332,6 +2350,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: BikeAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BikeSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: BikeMinAggregateInputType
@@ -2362,17 +2392,21 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: BikeCountAggregateInputType | true
+    _avg?: BikeAvgAggregateInputType
+    _sum?: BikeSumAggregateInputType
     _min?: BikeMinAggregateInputType
     _max?: BikeMaxAggregateInputType
   }
 
   export type BikeGroupByOutputType = {
     bikeId: string
-    brand: $Enums.brand
+    brand: $Enums.Brand
     model: string
-    year: string
+    year: number
     customerId: string
     _count: BikeCountAggregateOutputType | null
+    _avg: BikeAvgAggregateOutputType | null
+    _sum: BikeSumAggregateOutputType | null
     _min: BikeMinAggregateOutputType | null
     _max: BikeMaxAggregateOutputType | null
   }
@@ -2449,9 +2483,9 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       bikeId: string
-      brand: $Enums.brand
+      brand: $Enums.Brand
       model: string
-      year: string
+      year: number
       customerId: string
     }, ExtArgs["result"]["bike"]>
     composites: {}
@@ -2879,9 +2913,9 @@ export namespace Prisma {
    */
   interface BikeFieldRefs {
     readonly bikeId: FieldRef<"Bike", 'String'>
-    readonly brand: FieldRef<"Bike", 'brand'>
+    readonly brand: FieldRef<"Bike", 'Brand'>
     readonly model: FieldRef<"Bike", 'String'>
-    readonly year: FieldRef<"Bike", 'String'>
+    readonly year: FieldRef<"Bike", 'Int'>
     readonly customerId: FieldRef<"Bike", 'String'>
   }
     
@@ -4499,16 +4533,30 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'brand'
+   * Reference to a field of type 'Brand'
    */
-  export type EnumbrandFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'brand'>
+  export type EnumBrandFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Brand'>
     
 
 
   /**
-   * Reference to a field of type 'brand[]'
+   * Reference to a field of type 'Brand[]'
    */
-  export type ListEnumbrandFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'brand[]'>
+  export type ListEnumBrandFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Brand[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -4527,16 +4575,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
+   * Reference to a field of type 'Float'
    */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
     
 
 
   /**
-   * Reference to a field of type 'Int[]'
+   * Reference to a field of type 'Float[]'
    */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -4608,9 +4656,9 @@ export namespace Prisma {
     OR?: BikeWhereInput[]
     NOT?: BikeWhereInput | BikeWhereInput[]
     bikeId?: StringFilter<"Bike"> | string
-    brand?: EnumbrandFilter<"Bike"> | $Enums.brand
+    brand?: EnumBrandFilter<"Bike"> | $Enums.Brand
     model?: StringFilter<"Bike"> | string
-    year?: StringFilter<"Bike"> | string
+    year?: IntFilter<"Bike"> | number
     customerId?: StringFilter<"Bike"> | string
     customer?: XOR<CustomerScalarRelationFilter, customerWhereInput>
     serviceRecords?: ServiceRecordListRelationFilter
@@ -4631,9 +4679,9 @@ export namespace Prisma {
     AND?: BikeWhereInput | BikeWhereInput[]
     OR?: BikeWhereInput[]
     NOT?: BikeWhereInput | BikeWhereInput[]
-    brand?: EnumbrandFilter<"Bike"> | $Enums.brand
+    brand?: EnumBrandFilter<"Bike"> | $Enums.Brand
     model?: StringFilter<"Bike"> | string
-    year?: StringFilter<"Bike"> | string
+    year?: IntFilter<"Bike"> | number
     customerId?: StringFilter<"Bike"> | string
     customer?: XOR<CustomerScalarRelationFilter, customerWhereInput>
     serviceRecords?: ServiceRecordListRelationFilter
@@ -4646,8 +4694,10 @@ export namespace Prisma {
     year?: SortOrder
     customerId?: SortOrder
     _count?: BikeCountOrderByAggregateInput
+    _avg?: BikeAvgOrderByAggregateInput
     _max?: BikeMaxOrderByAggregateInput
     _min?: BikeMinOrderByAggregateInput
+    _sum?: BikeSumOrderByAggregateInput
   }
 
   export type BikeScalarWhereWithAggregatesInput = {
@@ -4655,9 +4705,9 @@ export namespace Prisma {
     OR?: BikeScalarWhereWithAggregatesInput[]
     NOT?: BikeScalarWhereWithAggregatesInput | BikeScalarWhereWithAggregatesInput[]
     bikeId?: StringWithAggregatesFilter<"Bike"> | string
-    brand?: EnumbrandWithAggregatesFilter<"Bike"> | $Enums.brand
+    brand?: EnumBrandWithAggregatesFilter<"Bike"> | $Enums.Brand
     model?: StringWithAggregatesFilter<"Bike"> | string
-    year?: StringWithAggregatesFilter<"Bike"> | string
+    year?: IntWithAggregatesFilter<"Bike"> | number
     customerId?: StringWithAggregatesFilter<"Bike"> | string
   }
 
@@ -4790,60 +4840,60 @@ export namespace Prisma {
 
   export type BikeCreateInput = {
     bikeId?: string
-    brand: $Enums.brand
+    brand: $Enums.Brand
     model: string
-    year: string
+    year: number
     customer: customerCreateNestedOneWithoutBikesInput
     serviceRecords?: ServiceRecordCreateNestedManyWithoutBikeInput
   }
 
   export type BikeUncheckedCreateInput = {
     bikeId?: string
-    brand: $Enums.brand
+    brand: $Enums.Brand
     model: string
-    year: string
+    year: number
     customerId: string
     serviceRecords?: ServiceRecordUncheckedCreateNestedManyWithoutBikeInput
   }
 
   export type BikeUpdateInput = {
     bikeId?: StringFieldUpdateOperationsInput | string
-    brand?: EnumbrandFieldUpdateOperationsInput | $Enums.brand
+    brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
     model?: StringFieldUpdateOperationsInput | string
-    year?: StringFieldUpdateOperationsInput | string
+    year?: IntFieldUpdateOperationsInput | number
     customer?: customerUpdateOneRequiredWithoutBikesNestedInput
     serviceRecords?: ServiceRecordUpdateManyWithoutBikeNestedInput
   }
 
   export type BikeUncheckedUpdateInput = {
     bikeId?: StringFieldUpdateOperationsInput | string
-    brand?: EnumbrandFieldUpdateOperationsInput | $Enums.brand
+    brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
     model?: StringFieldUpdateOperationsInput | string
-    year?: StringFieldUpdateOperationsInput | string
+    year?: IntFieldUpdateOperationsInput | number
     customerId?: StringFieldUpdateOperationsInput | string
     serviceRecords?: ServiceRecordUncheckedUpdateManyWithoutBikeNestedInput
   }
 
   export type BikeCreateManyInput = {
     bikeId?: string
-    brand: $Enums.brand
+    brand: $Enums.Brand
     model: string
-    year: string
+    year: number
     customerId: string
   }
 
   export type BikeUpdateManyMutationInput = {
     bikeId?: StringFieldUpdateOperationsInput | string
-    brand?: EnumbrandFieldUpdateOperationsInput | $Enums.brand
+    brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
     model?: StringFieldUpdateOperationsInput | string
-    year?: StringFieldUpdateOperationsInput | string
+    year?: IntFieldUpdateOperationsInput | number
   }
 
   export type BikeUncheckedUpdateManyInput = {
     bikeId?: StringFieldUpdateOperationsInput | string
-    brand?: EnumbrandFieldUpdateOperationsInput | $Enums.brand
+    brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
     model?: StringFieldUpdateOperationsInput | string
-    year?: StringFieldUpdateOperationsInput | string
+    year?: IntFieldUpdateOperationsInput | number
     customerId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -5004,11 +5054,22 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type EnumbrandFilter<$PrismaModel = never> = {
-    equals?: $Enums.brand | EnumbrandFieldRefInput<$PrismaModel>
-    in?: $Enums.brand[] | ListEnumbrandFieldRefInput<$PrismaModel>
-    notIn?: $Enums.brand[] | ListEnumbrandFieldRefInput<$PrismaModel>
-    not?: NestedEnumbrandFilter<$PrismaModel> | $Enums.brand
+  export type EnumBrandFilter<$PrismaModel = never> = {
+    equals?: $Enums.Brand | EnumBrandFieldRefInput<$PrismaModel>
+    in?: $Enums.Brand[] | ListEnumBrandFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Brand[] | ListEnumBrandFieldRefInput<$PrismaModel>
+    not?: NestedEnumBrandFilter<$PrismaModel> | $Enums.Brand
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type CustomerScalarRelationFilter = {
@@ -5034,6 +5095,10 @@ export namespace Prisma {
     customerId?: SortOrder
   }
 
+  export type BikeAvgOrderByAggregateInput = {
+    year?: SortOrder
+  }
+
   export type BikeMaxOrderByAggregateInput = {
     bikeId?: SortOrder
     brand?: SortOrder
@@ -5050,14 +5115,34 @@ export namespace Prisma {
     customerId?: SortOrder
   }
 
-  export type EnumbrandWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.brand | EnumbrandFieldRefInput<$PrismaModel>
-    in?: $Enums.brand[] | ListEnumbrandFieldRefInput<$PrismaModel>
-    notIn?: $Enums.brand[] | ListEnumbrandFieldRefInput<$PrismaModel>
-    not?: NestedEnumbrandWithAggregatesFilter<$PrismaModel> | $Enums.brand
+  export type BikeSumOrderByAggregateInput = {
+    year?: SortOrder
+  }
+
+  export type EnumBrandWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Brand | EnumBrandFieldRefInput<$PrismaModel>
+    in?: $Enums.Brand[] | ListEnumBrandFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Brand[] | ListEnumBrandFieldRefInput<$PrismaModel>
+    not?: NestedEnumBrandWithAggregatesFilter<$PrismaModel> | $Enums.Brand
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumbrandFilter<$PrismaModel>
-    _max?: NestedEnumbrandFilter<$PrismaModel>
+    _min?: NestedEnumBrandFilter<$PrismaModel>
+    _max?: NestedEnumBrandFilter<$PrismaModel>
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type DateTimeNullableFilter<$PrismaModel = never> = {
@@ -5209,8 +5294,16 @@ export namespace Prisma {
     connect?: ServiceRecordWhereUniqueInput | ServiceRecordWhereUniqueInput[]
   }
 
-  export type EnumbrandFieldUpdateOperationsInput = {
-    set?: $Enums.brand
+  export type EnumBrandFieldUpdateOperationsInput = {
+    set?: $Enums.Brand
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type customerUpdateOneRequiredWithoutBikesNestedInput = {
@@ -5338,21 +5431,48 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type NestedEnumbrandFilter<$PrismaModel = never> = {
-    equals?: $Enums.brand | EnumbrandFieldRefInput<$PrismaModel>
-    in?: $Enums.brand[] | ListEnumbrandFieldRefInput<$PrismaModel>
-    notIn?: $Enums.brand[] | ListEnumbrandFieldRefInput<$PrismaModel>
-    not?: NestedEnumbrandFilter<$PrismaModel> | $Enums.brand
+  export type NestedEnumBrandFilter<$PrismaModel = never> = {
+    equals?: $Enums.Brand | EnumBrandFieldRefInput<$PrismaModel>
+    in?: $Enums.Brand[] | ListEnumBrandFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Brand[] | ListEnumBrandFieldRefInput<$PrismaModel>
+    not?: NestedEnumBrandFilter<$PrismaModel> | $Enums.Brand
   }
 
-  export type NestedEnumbrandWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.brand | EnumbrandFieldRefInput<$PrismaModel>
-    in?: $Enums.brand[] | ListEnumbrandFieldRefInput<$PrismaModel>
-    notIn?: $Enums.brand[] | ListEnumbrandFieldRefInput<$PrismaModel>
-    not?: NestedEnumbrandWithAggregatesFilter<$PrismaModel> | $Enums.brand
+  export type NestedEnumBrandWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Brand | EnumBrandFieldRefInput<$PrismaModel>
+    in?: $Enums.Brand[] | ListEnumBrandFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Brand[] | ListEnumBrandFieldRefInput<$PrismaModel>
+    not?: NestedEnumBrandWithAggregatesFilter<$PrismaModel> | $Enums.Brand
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumbrandFilter<$PrismaModel>
-    _max?: NestedEnumbrandFilter<$PrismaModel>
+    _min?: NestedEnumBrandFilter<$PrismaModel>
+    _max?: NestedEnumBrandFilter<$PrismaModel>
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
@@ -5410,17 +5530,17 @@ export namespace Prisma {
 
   export type BikeCreateWithoutCustomerInput = {
     bikeId?: string
-    brand: $Enums.brand
+    brand: $Enums.Brand
     model: string
-    year: string
+    year: number
     serviceRecords?: ServiceRecordCreateNestedManyWithoutBikeInput
   }
 
   export type BikeUncheckedCreateWithoutCustomerInput = {
     bikeId?: string
-    brand: $Enums.brand
+    brand: $Enums.Brand
     model: string
-    year: string
+    year: number
     serviceRecords?: ServiceRecordUncheckedCreateNestedManyWithoutBikeInput
   }
 
@@ -5455,9 +5575,9 @@ export namespace Prisma {
     OR?: BikeScalarWhereInput[]
     NOT?: BikeScalarWhereInput | BikeScalarWhereInput[]
     bikeId?: StringFilter<"Bike"> | string
-    brand?: EnumbrandFilter<"Bike"> | $Enums.brand
+    brand?: EnumBrandFilter<"Bike"> | $Enums.Brand
     model?: StringFilter<"Bike"> | string
-    year?: StringFilter<"Bike"> | string
+    year?: IntFilter<"Bike"> | number
     customerId?: StringFilter<"Bike"> | string
   }
 
@@ -5569,17 +5689,17 @@ export namespace Prisma {
 
   export type BikeCreateWithoutServiceRecordsInput = {
     bikeId?: string
-    brand: $Enums.brand
+    brand: $Enums.Brand
     model: string
-    year: string
+    year: number
     customer: customerCreateNestedOneWithoutBikesInput
   }
 
   export type BikeUncheckedCreateWithoutServiceRecordsInput = {
     bikeId?: string
-    brand: $Enums.brand
+    brand: $Enums.Brand
     model: string
-    year: string
+    year: number
     customerId: string
   }
 
@@ -5601,48 +5721,48 @@ export namespace Prisma {
 
   export type BikeUpdateWithoutServiceRecordsInput = {
     bikeId?: StringFieldUpdateOperationsInput | string
-    brand?: EnumbrandFieldUpdateOperationsInput | $Enums.brand
+    brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
     model?: StringFieldUpdateOperationsInput | string
-    year?: StringFieldUpdateOperationsInput | string
+    year?: IntFieldUpdateOperationsInput | number
     customer?: customerUpdateOneRequiredWithoutBikesNestedInput
   }
 
   export type BikeUncheckedUpdateWithoutServiceRecordsInput = {
     bikeId?: StringFieldUpdateOperationsInput | string
-    brand?: EnumbrandFieldUpdateOperationsInput | $Enums.brand
+    brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
     model?: StringFieldUpdateOperationsInput | string
-    year?: StringFieldUpdateOperationsInput | string
+    year?: IntFieldUpdateOperationsInput | number
     customerId?: StringFieldUpdateOperationsInput | string
   }
 
   export type BikeCreateManyCustomerInput = {
     bikeId?: string
-    brand: $Enums.brand
+    brand: $Enums.Brand
     model: string
-    year: string
+    year: number
   }
 
   export type BikeUpdateWithoutCustomerInput = {
     bikeId?: StringFieldUpdateOperationsInput | string
-    brand?: EnumbrandFieldUpdateOperationsInput | $Enums.brand
+    brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
     model?: StringFieldUpdateOperationsInput | string
-    year?: StringFieldUpdateOperationsInput | string
+    year?: IntFieldUpdateOperationsInput | number
     serviceRecords?: ServiceRecordUpdateManyWithoutBikeNestedInput
   }
 
   export type BikeUncheckedUpdateWithoutCustomerInput = {
     bikeId?: StringFieldUpdateOperationsInput | string
-    brand?: EnumbrandFieldUpdateOperationsInput | $Enums.brand
+    brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
     model?: StringFieldUpdateOperationsInput | string
-    year?: StringFieldUpdateOperationsInput | string
+    year?: IntFieldUpdateOperationsInput | number
     serviceRecords?: ServiceRecordUncheckedUpdateManyWithoutBikeNestedInput
   }
 
   export type BikeUncheckedUpdateManyWithoutCustomerInput = {
     bikeId?: StringFieldUpdateOperationsInput | string
-    brand?: EnumbrandFieldUpdateOperationsInput | $Enums.brand
+    brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
     model?: StringFieldUpdateOperationsInput | string
-    year?: StringFieldUpdateOperationsInput | string
+    year?: IntFieldUpdateOperationsInput | number
   }
 
   export type ServiceRecordCreateManyBikeInput = {
