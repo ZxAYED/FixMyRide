@@ -30,44 +30,6 @@ export type Bike = $Result.DefaultSelection<Prisma.$BikePayload>
 export type ServiceRecord = $Result.DefaultSelection<Prisma.$ServiceRecordPayload>
 
 /**
- * Enums
- */
-export namespace $Enums {
-  export const Brand: {
-  KTM: 'KTM',
-  HONDA: 'HONDA',
-  SUZUKI: 'SUZUKI',
-  YAMAHA: 'YAMAHA',
-  TVS: 'TVS',
-  KAWASAKI: 'KAWASAKI',
-  DUCATI: 'DUCATI',
-  ROYAL_ENFIELD: 'ROYAL_ENFIELD',
-  BAJAJ: 'BAJAJ'
-};
-
-export type Brand = (typeof Brand)[keyof typeof Brand]
-
-
-export const status: {
-  pending: 'pending',
-  in_progress: 'in_progress',
-  done: 'done',
-  cancelled: 'cancelled'
-};
-
-export type status = (typeof status)[keyof typeof status]
-
-}
-
-export type Brand = $Enums.Brand
-
-export const Brand: typeof $Enums.Brand
-
-export type status = $Enums.status
-
-export const status: typeof $Enums.status
-
-/**
  * ##  Prisma Client ʲˢ
  *
  * Type-safe database client for TypeScript & Node.js
@@ -2255,7 +2217,7 @@ export namespace Prisma {
 
   export type BikeMinAggregateOutputType = {
     bikeId: string | null
-    brand: $Enums.Brand | null
+    brand: string | null
     model: string | null
     year: number | null
     customerId: string | null
@@ -2263,7 +2225,7 @@ export namespace Prisma {
 
   export type BikeMaxAggregateOutputType = {
     bikeId: string | null
-    brand: $Enums.Brand | null
+    brand: string | null
     model: string | null
     year: number | null
     customerId: string | null
@@ -2400,7 +2362,7 @@ export namespace Prisma {
 
   export type BikeGroupByOutputType = {
     bikeId: string
-    brand: $Enums.Brand
+    brand: string
     model: string
     year: number
     customerId: string
@@ -2483,7 +2445,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       bikeId: string
-      brand: $Enums.Brand
+      brand: string
       model: string
       year: number
       customerId: string
@@ -2913,7 +2875,7 @@ export namespace Prisma {
    */
   interface BikeFieldRefs {
     readonly bikeId: FieldRef<"Bike", 'String'>
-    readonly brand: FieldRef<"Bike", 'Brand'>
+    readonly brand: FieldRef<"Bike", 'String'>
     readonly model: FieldRef<"Bike", 'String'>
     readonly year: FieldRef<"Bike", 'Int'>
     readonly customerId: FieldRef<"Bike", 'String'>
@@ -3371,7 +3333,7 @@ export namespace Prisma {
     serviceDate: Date | null
     completionDate: Date | null
     description: string | null
-    status: $Enums.status | null
+    status: string | null
   }
 
   export type ServiceRecordMaxAggregateOutputType = {
@@ -3380,7 +3342,7 @@ export namespace Prisma {
     serviceDate: Date | null
     completionDate: Date | null
     description: string | null
-    status: $Enums.status | null
+    status: string | null
   }
 
   export type ServiceRecordCountAggregateOutputType = {
@@ -3500,7 +3462,7 @@ export namespace Prisma {
     serviceDate: Date
     completionDate: Date | null
     description: string
-    status: $Enums.status
+    status: string
     _count: ServiceRecordCountAggregateOutputType | null
     _min: ServiceRecordMinAggregateOutputType | null
     _max: ServiceRecordMaxAggregateOutputType | null
@@ -3581,7 +3543,7 @@ export namespace Prisma {
       serviceDate: Date
       completionDate: Date | null
       description: string
-      status: $Enums.status
+      status: string
     }, ExtArgs["result"]["serviceRecord"]>
     composites: {}
   }
@@ -4011,7 +3973,7 @@ export namespace Prisma {
     readonly serviceDate: FieldRef<"ServiceRecord", 'DateTime'>
     readonly completionDate: FieldRef<"ServiceRecord", 'DateTime'>
     readonly description: FieldRef<"ServiceRecord", 'String'>
-    readonly status: FieldRef<"ServiceRecord", 'status'>
+    readonly status: FieldRef<"ServiceRecord", 'String'>
   }
     
 
@@ -4533,20 +4495,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Brand'
-   */
-  export type EnumBrandFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Brand'>
-    
-
-
-  /**
-   * Reference to a field of type 'Brand[]'
-   */
-  export type ListEnumBrandFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Brand[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -4557,20 +4505,6 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'status'
-   */
-  export type EnumstatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'status'>
-    
-
-
-  /**
-   * Reference to a field of type 'status[]'
-   */
-  export type ListEnumstatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'status[]'>
     
 
 
@@ -4656,7 +4590,7 @@ export namespace Prisma {
     OR?: BikeWhereInput[]
     NOT?: BikeWhereInput | BikeWhereInput[]
     bikeId?: StringFilter<"Bike"> | string
-    brand?: EnumBrandFilter<"Bike"> | $Enums.Brand
+    brand?: StringFilter<"Bike"> | string
     model?: StringFilter<"Bike"> | string
     year?: IntFilter<"Bike"> | number
     customerId?: StringFilter<"Bike"> | string
@@ -4679,7 +4613,7 @@ export namespace Prisma {
     AND?: BikeWhereInput | BikeWhereInput[]
     OR?: BikeWhereInput[]
     NOT?: BikeWhereInput | BikeWhereInput[]
-    brand?: EnumBrandFilter<"Bike"> | $Enums.Brand
+    brand?: StringFilter<"Bike"> | string
     model?: StringFilter<"Bike"> | string
     year?: IntFilter<"Bike"> | number
     customerId?: StringFilter<"Bike"> | string
@@ -4705,7 +4639,7 @@ export namespace Prisma {
     OR?: BikeScalarWhereWithAggregatesInput[]
     NOT?: BikeScalarWhereWithAggregatesInput | BikeScalarWhereWithAggregatesInput[]
     bikeId?: StringWithAggregatesFilter<"Bike"> | string
-    brand?: EnumBrandWithAggregatesFilter<"Bike"> | $Enums.Brand
+    brand?: StringWithAggregatesFilter<"Bike"> | string
     model?: StringWithAggregatesFilter<"Bike"> | string
     year?: IntWithAggregatesFilter<"Bike"> | number
     customerId?: StringWithAggregatesFilter<"Bike"> | string
@@ -4720,7 +4654,7 @@ export namespace Prisma {
     serviceDate?: DateTimeFilter<"ServiceRecord"> | Date | string
     completionDate?: DateTimeNullableFilter<"ServiceRecord"> | Date | string | null
     description?: StringFilter<"ServiceRecord"> | string
-    status?: EnumstatusFilter<"ServiceRecord"> | $Enums.status
+    status?: StringFilter<"ServiceRecord"> | string
     bike?: XOR<BikeScalarRelationFilter, BikeWhereInput>
   }
 
@@ -4743,7 +4677,7 @@ export namespace Prisma {
     serviceDate?: DateTimeFilter<"ServiceRecord"> | Date | string
     completionDate?: DateTimeNullableFilter<"ServiceRecord"> | Date | string | null
     description?: StringFilter<"ServiceRecord"> | string
-    status?: EnumstatusFilter<"ServiceRecord"> | $Enums.status
+    status?: StringFilter<"ServiceRecord"> | string
     bike?: XOR<BikeScalarRelationFilter, BikeWhereInput>
   }, "serviceId">
 
@@ -4768,7 +4702,7 @@ export namespace Prisma {
     serviceDate?: DateTimeWithAggregatesFilter<"ServiceRecord"> | Date | string
     completionDate?: DateTimeNullableWithAggregatesFilter<"ServiceRecord"> | Date | string | null
     description?: StringWithAggregatesFilter<"ServiceRecord"> | string
-    status?: EnumstatusWithAggregatesFilter<"ServiceRecord"> | $Enums.status
+    status?: StringWithAggregatesFilter<"ServiceRecord"> | string
   }
 
   export type customerCreateInput = {
@@ -4840,7 +4774,7 @@ export namespace Prisma {
 
   export type BikeCreateInput = {
     bikeId?: string
-    brand: $Enums.Brand
+    brand: string
     model: string
     year: number
     customer: customerCreateNestedOneWithoutBikesInput
@@ -4849,7 +4783,7 @@ export namespace Prisma {
 
   export type BikeUncheckedCreateInput = {
     bikeId?: string
-    brand: $Enums.Brand
+    brand: string
     model: string
     year: number
     customerId: string
@@ -4858,7 +4792,7 @@ export namespace Prisma {
 
   export type BikeUpdateInput = {
     bikeId?: StringFieldUpdateOperationsInput | string
-    brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
+    brand?: StringFieldUpdateOperationsInput | string
     model?: StringFieldUpdateOperationsInput | string
     year?: IntFieldUpdateOperationsInput | number
     customer?: customerUpdateOneRequiredWithoutBikesNestedInput
@@ -4867,7 +4801,7 @@ export namespace Prisma {
 
   export type BikeUncheckedUpdateInput = {
     bikeId?: StringFieldUpdateOperationsInput | string
-    brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
+    brand?: StringFieldUpdateOperationsInput | string
     model?: StringFieldUpdateOperationsInput | string
     year?: IntFieldUpdateOperationsInput | number
     customerId?: StringFieldUpdateOperationsInput | string
@@ -4876,7 +4810,7 @@ export namespace Prisma {
 
   export type BikeCreateManyInput = {
     bikeId?: string
-    brand: $Enums.Brand
+    brand: string
     model: string
     year: number
     customerId: string
@@ -4884,14 +4818,14 @@ export namespace Prisma {
 
   export type BikeUpdateManyMutationInput = {
     bikeId?: StringFieldUpdateOperationsInput | string
-    brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
+    brand?: StringFieldUpdateOperationsInput | string
     model?: StringFieldUpdateOperationsInput | string
     year?: IntFieldUpdateOperationsInput | number
   }
 
   export type BikeUncheckedUpdateManyInput = {
     bikeId?: StringFieldUpdateOperationsInput | string
-    brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
+    brand?: StringFieldUpdateOperationsInput | string
     model?: StringFieldUpdateOperationsInput | string
     year?: IntFieldUpdateOperationsInput | number
     customerId?: StringFieldUpdateOperationsInput | string
@@ -4902,7 +4836,7 @@ export namespace Prisma {
     serviceDate?: Date | string
     completionDate?: Date | string | null
     description: string
-    status: $Enums.status
+    status: string
     bike: BikeCreateNestedOneWithoutServiceRecordsInput
   }
 
@@ -4912,7 +4846,7 @@ export namespace Prisma {
     serviceDate?: Date | string
     completionDate?: Date | string | null
     description: string
-    status: $Enums.status
+    status: string
   }
 
   export type ServiceRecordUpdateInput = {
@@ -4920,7 +4854,7 @@ export namespace Prisma {
     serviceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     completionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     description?: StringFieldUpdateOperationsInput | string
-    status?: EnumstatusFieldUpdateOperationsInput | $Enums.status
+    status?: StringFieldUpdateOperationsInput | string
     bike?: BikeUpdateOneRequiredWithoutServiceRecordsNestedInput
   }
 
@@ -4930,7 +4864,7 @@ export namespace Prisma {
     serviceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     completionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     description?: StringFieldUpdateOperationsInput | string
-    status?: EnumstatusFieldUpdateOperationsInput | $Enums.status
+    status?: StringFieldUpdateOperationsInput | string
   }
 
   export type ServiceRecordCreateManyInput = {
@@ -4939,7 +4873,7 @@ export namespace Prisma {
     serviceDate?: Date | string
     completionDate?: Date | string | null
     description: string
-    status: $Enums.status
+    status: string
   }
 
   export type ServiceRecordUpdateManyMutationInput = {
@@ -4947,7 +4881,7 @@ export namespace Prisma {
     serviceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     completionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     description?: StringFieldUpdateOperationsInput | string
-    status?: EnumstatusFieldUpdateOperationsInput | $Enums.status
+    status?: StringFieldUpdateOperationsInput | string
   }
 
   export type ServiceRecordUncheckedUpdateManyInput = {
@@ -4956,7 +4890,7 @@ export namespace Prisma {
     serviceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     completionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     description?: StringFieldUpdateOperationsInput | string
-    status?: EnumstatusFieldUpdateOperationsInput | $Enums.status
+    status?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -5054,13 +4988,6 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type EnumBrandFilter<$PrismaModel = never> = {
-    equals?: $Enums.Brand | EnumBrandFieldRefInput<$PrismaModel>
-    in?: $Enums.Brand[] | ListEnumBrandFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Brand[] | ListEnumBrandFieldRefInput<$PrismaModel>
-    not?: NestedEnumBrandFilter<$PrismaModel> | $Enums.Brand
-  }
-
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -5119,16 +5046,6 @@ export namespace Prisma {
     year?: SortOrder
   }
 
-  export type EnumBrandWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Brand | EnumBrandFieldRefInput<$PrismaModel>
-    in?: $Enums.Brand[] | ListEnumBrandFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Brand[] | ListEnumBrandFieldRefInput<$PrismaModel>
-    not?: NestedEnumBrandWithAggregatesFilter<$PrismaModel> | $Enums.Brand
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumBrandFilter<$PrismaModel>
-    _max?: NestedEnumBrandFilter<$PrismaModel>
-  }
-
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -5154,13 +5071,6 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
-  export type EnumstatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.status | EnumstatusFieldRefInput<$PrismaModel>
-    in?: $Enums.status[] | ListEnumstatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.status[] | ListEnumstatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumstatusFilter<$PrismaModel> | $Enums.status
   }
 
   export type BikeScalarRelationFilter = {
@@ -5212,16 +5122,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
-  export type EnumstatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.status | EnumstatusFieldRefInput<$PrismaModel>
-    in?: $Enums.status[] | ListEnumstatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.status[] | ListEnumstatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumstatusWithAggregatesFilter<$PrismaModel> | $Enums.status
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumstatusFilter<$PrismaModel>
-    _max?: NestedEnumstatusFilter<$PrismaModel>
   }
 
   export type BikeCreateNestedManyWithoutCustomerInput = {
@@ -5294,10 +5194,6 @@ export namespace Prisma {
     connect?: ServiceRecordWhereUniqueInput | ServiceRecordWhereUniqueInput[]
   }
 
-  export type EnumBrandFieldUpdateOperationsInput = {
-    set?: $Enums.Brand
-  }
-
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -5350,10 +5246,6 @@ export namespace Prisma {
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
-  }
-
-  export type EnumstatusFieldUpdateOperationsInput = {
-    set?: $Enums.status
   }
 
   export type BikeUpdateOneRequiredWithoutServiceRecordsNestedInput = {
@@ -5431,23 +5323,6 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type NestedEnumBrandFilter<$PrismaModel = never> = {
-    equals?: $Enums.Brand | EnumBrandFieldRefInput<$PrismaModel>
-    in?: $Enums.Brand[] | ListEnumBrandFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Brand[] | ListEnumBrandFieldRefInput<$PrismaModel>
-    not?: NestedEnumBrandFilter<$PrismaModel> | $Enums.Brand
-  }
-
-  export type NestedEnumBrandWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Brand | EnumBrandFieldRefInput<$PrismaModel>
-    in?: $Enums.Brand[] | ListEnumBrandFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Brand[] | ListEnumBrandFieldRefInput<$PrismaModel>
-    not?: NestedEnumBrandWithAggregatesFilter<$PrismaModel> | $Enums.Brand
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumBrandFilter<$PrismaModel>
-    _max?: NestedEnumBrandFilter<$PrismaModel>
-  }
-
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -5486,13 +5361,6 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type NestedEnumstatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.status | EnumstatusFieldRefInput<$PrismaModel>
-    in?: $Enums.status[] | ListEnumstatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.status[] | ListEnumstatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumstatusFilter<$PrismaModel> | $Enums.status
-  }
-
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -5518,19 +5386,9 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedEnumstatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.status | EnumstatusFieldRefInput<$PrismaModel>
-    in?: $Enums.status[] | ListEnumstatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.status[] | ListEnumstatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumstatusWithAggregatesFilter<$PrismaModel> | $Enums.status
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumstatusFilter<$PrismaModel>
-    _max?: NestedEnumstatusFilter<$PrismaModel>
-  }
-
   export type BikeCreateWithoutCustomerInput = {
     bikeId?: string
-    brand: $Enums.Brand
+    brand: string
     model: string
     year: number
     serviceRecords?: ServiceRecordCreateNestedManyWithoutBikeInput
@@ -5538,7 +5396,7 @@ export namespace Prisma {
 
   export type BikeUncheckedCreateWithoutCustomerInput = {
     bikeId?: string
-    brand: $Enums.Brand
+    brand: string
     model: string
     year: number
     serviceRecords?: ServiceRecordUncheckedCreateNestedManyWithoutBikeInput
@@ -5575,7 +5433,7 @@ export namespace Prisma {
     OR?: BikeScalarWhereInput[]
     NOT?: BikeScalarWhereInput | BikeScalarWhereInput[]
     bikeId?: StringFilter<"Bike"> | string
-    brand?: EnumBrandFilter<"Bike"> | $Enums.Brand
+    brand?: StringFilter<"Bike"> | string
     model?: StringFilter<"Bike"> | string
     year?: IntFilter<"Bike"> | number
     customerId?: StringFilter<"Bike"> | string
@@ -5609,7 +5467,7 @@ export namespace Prisma {
     serviceDate?: Date | string
     completionDate?: Date | string | null
     description: string
-    status: $Enums.status
+    status: string
   }
 
   export type ServiceRecordUncheckedCreateWithoutBikeInput = {
@@ -5617,7 +5475,7 @@ export namespace Prisma {
     serviceDate?: Date | string
     completionDate?: Date | string | null
     description: string
-    status: $Enums.status
+    status: string
   }
 
   export type ServiceRecordCreateOrConnectWithoutBikeInput = {
@@ -5684,12 +5542,12 @@ export namespace Prisma {
     serviceDate?: DateTimeFilter<"ServiceRecord"> | Date | string
     completionDate?: DateTimeNullableFilter<"ServiceRecord"> | Date | string | null
     description?: StringFilter<"ServiceRecord"> | string
-    status?: EnumstatusFilter<"ServiceRecord"> | $Enums.status
+    status?: StringFilter<"ServiceRecord"> | string
   }
 
   export type BikeCreateWithoutServiceRecordsInput = {
     bikeId?: string
-    brand: $Enums.Brand
+    brand: string
     model: string
     year: number
     customer: customerCreateNestedOneWithoutBikesInput
@@ -5697,7 +5555,7 @@ export namespace Prisma {
 
   export type BikeUncheckedCreateWithoutServiceRecordsInput = {
     bikeId?: string
-    brand: $Enums.Brand
+    brand: string
     model: string
     year: number
     customerId: string
@@ -5721,7 +5579,7 @@ export namespace Prisma {
 
   export type BikeUpdateWithoutServiceRecordsInput = {
     bikeId?: StringFieldUpdateOperationsInput | string
-    brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
+    brand?: StringFieldUpdateOperationsInput | string
     model?: StringFieldUpdateOperationsInput | string
     year?: IntFieldUpdateOperationsInput | number
     customer?: customerUpdateOneRequiredWithoutBikesNestedInput
@@ -5729,7 +5587,7 @@ export namespace Prisma {
 
   export type BikeUncheckedUpdateWithoutServiceRecordsInput = {
     bikeId?: StringFieldUpdateOperationsInput | string
-    brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
+    brand?: StringFieldUpdateOperationsInput | string
     model?: StringFieldUpdateOperationsInput | string
     year?: IntFieldUpdateOperationsInput | number
     customerId?: StringFieldUpdateOperationsInput | string
@@ -5737,14 +5595,14 @@ export namespace Prisma {
 
   export type BikeCreateManyCustomerInput = {
     bikeId?: string
-    brand: $Enums.Brand
+    brand: string
     model: string
     year: number
   }
 
   export type BikeUpdateWithoutCustomerInput = {
     bikeId?: StringFieldUpdateOperationsInput | string
-    brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
+    brand?: StringFieldUpdateOperationsInput | string
     model?: StringFieldUpdateOperationsInput | string
     year?: IntFieldUpdateOperationsInput | number
     serviceRecords?: ServiceRecordUpdateManyWithoutBikeNestedInput
@@ -5752,7 +5610,7 @@ export namespace Prisma {
 
   export type BikeUncheckedUpdateWithoutCustomerInput = {
     bikeId?: StringFieldUpdateOperationsInput | string
-    brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
+    brand?: StringFieldUpdateOperationsInput | string
     model?: StringFieldUpdateOperationsInput | string
     year?: IntFieldUpdateOperationsInput | number
     serviceRecords?: ServiceRecordUncheckedUpdateManyWithoutBikeNestedInput
@@ -5760,7 +5618,7 @@ export namespace Prisma {
 
   export type BikeUncheckedUpdateManyWithoutCustomerInput = {
     bikeId?: StringFieldUpdateOperationsInput | string
-    brand?: EnumBrandFieldUpdateOperationsInput | $Enums.Brand
+    brand?: StringFieldUpdateOperationsInput | string
     model?: StringFieldUpdateOperationsInput | string
     year?: IntFieldUpdateOperationsInput | number
   }
@@ -5770,7 +5628,7 @@ export namespace Prisma {
     serviceDate?: Date | string
     completionDate?: Date | string | null
     description: string
-    status: $Enums.status
+    status: string
   }
 
   export type ServiceRecordUpdateWithoutBikeInput = {
@@ -5778,7 +5636,7 @@ export namespace Prisma {
     serviceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     completionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     description?: StringFieldUpdateOperationsInput | string
-    status?: EnumstatusFieldUpdateOperationsInput | $Enums.status
+    status?: StringFieldUpdateOperationsInput | string
   }
 
   export type ServiceRecordUncheckedUpdateWithoutBikeInput = {
@@ -5786,7 +5644,7 @@ export namespace Prisma {
     serviceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     completionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     description?: StringFieldUpdateOperationsInput | string
-    status?: EnumstatusFieldUpdateOperationsInput | $Enums.status
+    status?: StringFieldUpdateOperationsInput | string
   }
 
   export type ServiceRecordUncheckedUpdateManyWithoutBikeInput = {
@@ -5794,7 +5652,7 @@ export namespace Prisma {
     serviceDate?: DateTimeFieldUpdateOperationsInput | Date | string
     completionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     description?: StringFieldUpdateOperationsInput | string
-    status?: EnumstatusFieldUpdateOperationsInput | $Enums.status
+    status?: StringFieldUpdateOperationsInput | string
   }
 
 

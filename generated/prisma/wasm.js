@@ -157,24 +157,7 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-exports.Brand = exports.$Enums.Brand = {
-  KTM: 'KTM',
-  HONDA: 'HONDA',
-  SUZUKI: 'SUZUKI',
-  YAMAHA: 'YAMAHA',
-  TVS: 'TVS',
-  KAWASAKI: 'KAWASAKI',
-  DUCATI: 'DUCATI',
-  ROYAL_ENFIELD: 'ROYAL_ENFIELD',
-  BAJAJ: 'BAJAJ'
-};
 
-exports.status = exports.$Enums.status = {
-  pending: 'pending',
-  in_progress: 'in_progress',
-  done: 'done',
-  cancelled: 'cancelled'
-};
 
 exports.Prisma.ModelName = {
   customer: 'customer',

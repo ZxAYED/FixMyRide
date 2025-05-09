@@ -8,25 +8,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Brand {
-  KTM
-  HONDA
-  SUZUKI
-  YAMAHA
-  TVS
-  KAWASAKI
-  DUCATI
-  ROYAL_ENFIELD
-  BAJAJ
-}
-
-enum status {
-  pending
-  in_progress
-  done
-  cancelled
-}
-
 model customer {
   customerId String   @id @default(uuid())
   name       String
@@ -39,7 +20,7 @@ model customer {
 
 model Bike {
   bikeId         String          @id @default(uuid())
-  brand          Brand
+  brand          String
   model          String
   year           Int
   customerId     String
@@ -54,5 +35,5 @@ model ServiceRecord {
   serviceDate    DateTime  @default(now())
   completionDate DateTime?
   description    String
-  status         status
+  status         String
 }
