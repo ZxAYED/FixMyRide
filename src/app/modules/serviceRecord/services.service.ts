@@ -20,6 +20,9 @@ const getServiceById = async (id: string) => {
             serviceId: id,
         },
     });
+    if (!result) {
+        throw new AppError(404,'Service Record does not exist')
+    }
     return result;
 }
 

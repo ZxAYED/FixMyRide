@@ -24,7 +24,7 @@ const getAllBikes = async () => {
 };
 
 const getBikeById = async (id: string) => {
-    console.log("🚀 ~ getBikeById ~ id:", id)
+    
      const result = await prisma.bike.findUnique({
         where: {
             bikeId: id,
