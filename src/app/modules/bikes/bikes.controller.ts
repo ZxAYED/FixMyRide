@@ -20,6 +20,7 @@ const getAllBikes = CatchAsync(async (req, res) => {
 }   );
 const getBikeById = CatchAsync(async (req, res) => {
     const result = await BikeService.getBikeById(req.params.id);
+   
     res.status(200).json({
         status: "success",
         message: "Bike is fetched successfully",

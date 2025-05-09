@@ -24,12 +24,17 @@ const getAllBikes = async () => {
 };
 
 const getBikeById = async (id: string) => {
-    const result = await prisma.bike.findUnique({
+    console.log("🚀 ~ getBikeById ~ id:", id)
+     const result = await prisma.bike.findUnique({
         where: {
             bikeId: id,
         },
     });
-    return result;
+
+    if (!result) {
+        throw new AppError(404,`Bike with id ${id} not found`);
+    }
+    return result
 }
 export const BikeService = {
     createBike,

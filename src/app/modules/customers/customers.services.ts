@@ -1,6 +1,6 @@
 import { prisma } from './../../shared/PrismaClient';
 import { ICustomer } from "./customers.interface";
-
+import { AppError } from "../../utils/AppError";
 const createCustomer = async (customer: ICustomer ) => {
     const result = await prisma.customer.create({
         data:customer
